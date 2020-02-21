@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django import forms
 from .forms import UserRegisterForm, UploadFileForm
 from django.core.files.storage import FileSystemStorage
 from django.core.files.storage import default_storage
@@ -56,6 +57,14 @@ def read_data(request):
     data_html = df.to_html(table_id='dtBasicExample', classes="table table-striped table-bordered")
 
     return render(request, templates, {'data': data_html})
+
+def test(request):
+    templates = 'users/test.html'
+
+    df = pd.read_csv('media/titanic_test.csv')
+    columns = df.columns.values
+
+    return render(request, templates, {'columns' : columns})
 
 
 

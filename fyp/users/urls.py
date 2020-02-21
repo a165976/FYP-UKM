@@ -10,4 +10,5 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('upload/', views.upload_datafiles, name='upload'),
     path('read/', views.read_data, name='read'),
+    path('test/', views.test, name='test'),
 ]
