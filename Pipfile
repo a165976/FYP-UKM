@@ -10,6 +10,7 @@ django = "*"
 django-crispy-forms = "*"
 numpy = "*"
 pandas = "*"
+django-plotly-dash = "*"
 
 [requires]
 python_version = "3.7"
