@@ -5,16 +5,19 @@ from django.contrib.auth.models import User
 from .models import Project, Dataset
 from .forms import ProjectForm, DataForm
 from django import forms
+from bokeh.plotting import figure
+from bokeh.embed import components
+from bokeh.models import HoverTool, ColumnDataSource, CDSView
 from django.views.generic import (
 	ListView, 
 	DetailView,
 	CreateView,
 	UpdateView,
 	DeleteView
+
 )
 import numpy as np
 import pandas as pd
-
 
 # Create your views here.
 
@@ -50,30 +53,60 @@ def ProjectCreateView(request):
 
     return render(request, 'project/newproject.html', {'dataform' : p_form, 'projectform' : d_form})
 
-def plotGraph(request,pk):
+def plotGraph(request, pk):
+
+    #----------------------import data--------------------------
+    data = Dataset.objects.get(project=pk)
+    title = data.title
+    df = pd.read_csv(f'media/datasets/{title}')
+    df[df.columns[0]] = pd.to_datetime(df[df.columns[0]])
+    print(df.dtypes)
+    source = ColumnDataSource(df)
 
     #-------------Create tuple pairs for choicefield---------------------
-    data = Dataset.objects.get(project=pk)
     columns = data.columns[1:-1]
     remove = columns.replace("'",'')
+    remove = remove.replace(",",'')
     choicelist = str.split(remove)
     choicelist2 = choicelist
     choice = list(zip(choicelist,choicelist2))
-
     graphType = [
         ('line', 'Line'),
         ('bar', 'Bar'),
     ]
-
+    #------------------Create form------------------------------------
     class graphForm(forms.Form):
-        x = forms.ChoiceField(choices=choice)
-        y = forms.ChoiceField(choices=choice)
+        Y = forms.ChoiceField(choices=choice)
         shape = forms.ChoiceField(choices=graphType)
-
     form = graphForm()
 
+    if request.method == 'POST':
+        form = graphForm(request.POST)
+        if form.is_valid():
+            TOOLS = 'save,pan,box_zoom,reset,wheel_zoom'
+            p = figure(
+                x_axis_type='datetime', 
+                tools=TOOLS, 
+                plot_height=400, 
+                plot_width=800,
+                )
+            p.xaxis.axis_label = 'Time'
+            p.yaxis.axis_label = form.cleaned_data['Y']
+            view = CDSView(source=source, filters=[])
+            hover = HoverTool(
+                tooltips = [
+                    ('Date', '@Date{%Y-%m-%d}'),
+                    ('Value', "@"),
+                ],
+                formatters={
+                    'Date': 'datetime',
+                },
+            )
+            p.add_tools(hover)
+            p.line(x='Date', y=form.cleaned_data['Y'], source=source, view=view)
+            
+            script, div = components(p)
 
-    return render(request, 'project/test.html', {'form': form})
-
-
-
+        return render(request, 'project/test.html', {'script': script, 'div':div, 'form':form})
+    
+    return render(request, 'project/test.html', {'form':form})

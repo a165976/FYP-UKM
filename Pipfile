@@ -11,6 +11,7 @@ django-crispy-forms = "*"
 numpy = "*"
 pandas = "*"
 django-plotly-dash = "*"
+bokeh = "*"
 
 [requires]
 python_version = "3.7"

@@ -7,5 +7,6 @@ app_name = 'project'
 urlpatterns = [
     path('new', views.ProjectCreateView, name='create'),
     path('list',views.ProjectListView.as_view(), name='list'),
-    path('<int:pk>/',views.plotGraph, name='plot' )
+    path('<int:pk>/',views.plotGraph, name='plot' ),
+    # path('graph/<int:pk>/',views.get_data, name="test")
 ]
