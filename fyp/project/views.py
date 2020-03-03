@@ -60,14 +60,11 @@ def plotGraph(request, pk):
     title = data.title
     df = pd.read_csv(f'media/datasets/{title}')
     df[df.columns[0]] = pd.to_datetime(df[df.columns[0]])
-    print(df.dtypes)
+    print(df.tail())
     source = ColumnDataSource(df)
 
     #-------------Create tuple pairs for choicefield---------------------
-    columns = data.columns[1:-1]
-    remove = columns.replace("'",'')
-    remove = remove.replace(",",'')
-    choicelist = str.split(remove)
+    choicelist = df.columns.values.tolist()
     choicelist2 = choicelist
     choice = list(zip(choicelist,choicelist2))
     graphType = [
@@ -92,11 +89,12 @@ def plotGraph(request, pk):
                 )
             p.xaxis.axis_label = 'Time'
             p.yaxis.axis_label = form.cleaned_data['Y']
+            y = form.cleaned_data['Y']
             view = CDSView(source=source, filters=[])
             hover = HoverTool(
                 tooltips = [
                     ('Date', '@Date{%Y-%m-%d}'),
-                    ('Value', "@"),
+                    ('Value', "$y{int}"),
                 ],
                 formatters={
                     'Date': 'datetime',

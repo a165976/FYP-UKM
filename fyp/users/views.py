@@ -52,8 +52,8 @@ def read_data(request):
 
     pd.set_option('display.width', 1000)
     pd.set_option('colheader_justify', 'center')
-
-    df = pd.read_csv('media/titanic_test.csv')
+    df = pd.read_csv('media/datasets/daily-minimum-temperatures-in-me.csv')
+    print(df.head())
     data_html = df.to_html(table_id='dtBasicExample', classes="table table-striped table-bordered")
 
     return render(request, templates, {'data': data_html})
