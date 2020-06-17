@@ -1,5 +1,4 @@
 {% load static %}
-{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -101,56 +100,22 @@
 				{% endfor %}
 			{% endif %}
 			<div class="content-section">
-				<div class="tab">
-					<button class="tablinks" onclick="openCity(event, 'Single')" id="One">Single</button>
-					<button class="tablinks" onclick="openCity(event, 'Double')" id="Two">Double</button>
-					<button class="tablinks" onclick="openCity(event, 'BarChart')" id='Bar'>BarChart</button>
+				<h3>Plot List</h3>
+				<div class="list-group">
+				  {% for plot in plots %}
+				  <a href="{% url 'project:view-plot' plot.project.id plot.id%}" class="list-group-item list-group-item-action">{{plot.title}}</a>
+				  {% endfor %}
+				  <a href="{% url 'project:create-plot' projectid %}" class="list-group-item list-group-item-action"><i class="fas fa-plus"></i> Add Plot</a>
 				</div>
-				<div id="Single" class="tabcontent">
-					<form method="POST" action="" class="" enctype="multipart/form-data" id="form">
-						{% csrf_token %}
-						<fieldset class="form-group">
-							<legend class="border-bottom mb-4">Select</legend>
-							{{ form | crispy }}
-						</fieldset>
-						<div class="form-group">
-							<button class="btn btn-outline-info" type="submit" value="form" name="createsingle">Create</button>
-							<button class="btn btn-outline-info" type="submit" value="Save" name="savesingle">Save</button>
-						</div>
-					</form>
-				</div>
-
-				<div id="Double" class="tabcontent">
-					<form method="POST" action="" class="" enctype="multipart/form-data" id="form">
-						{% csrf_token %}
-						<fieldset class="form-group">
-							<legend class="border-bottom mb-4">Select</legend>
-							{{ form2 | crispy }}
-						</fieldset>
-						<div class="form-group">
-							<button class="btn btn-outline-info" type="submit" value="form" name="createdouble">Create</button>
-							<button class="btn btn-outline-info" type="submit" value="Save" name="savedouble">Save</button>
-						</div>
-					</form>
-				</div>
-
-				<div id="BarChart" class="tabcontent">
-					<form method="POST" action="" class="" enctype="multipart/form-data" id="form">
-						{% csrf_token %}
-						<fieldset class="form-group">
-							<legend class="border-bottom mb-4">Select</legend>
-							{{ BarChart | crispy }}
-						</fieldset>
-						<div class="form-group">
-							<button class="btn btn-outline-info" type="submit" value="form" name="create">Create</button>
-						</div>
-					</form>
-				</div>
+				</p>
+			  </div>
 			</div>
-		</div>
-		<div class="col-md-8">
-			{{div|safe}}
-		</div>	
+			<div class="col-md-8">
+			  {{div|safe}}
+			  {%if currentplot %}
+			  <a class="float-right btn btn-outline-danger" href="{% url 'project:plot-delete' currentplot.id %}">Delete</a>
+			  {%endif%}
+			</div>
 	</div>
   <!-- End your project here-->
 
@@ -168,35 +133,3 @@
   <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.1.0.min.js"></script>
   <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-api-2.1.0.min.js"></script>
   {{script|safe}}
-  <script>
-	  document.getElementById("One").click();
-	  var selected = '{{type|escapejs}}';
-	  console.log(selected)
-	  if (selected == 'Single'){
-		document.getElementById("One").click();
-	  }
-	  if(selected == 'Double'){
-		document.getElementById("Two").click();
-	  }
-	  if(selected == 'Bar'){
-		document.getElementById("Bar").click();
-	  }
-	  
-
-	  function openCity(evt, cityName) {
-	  var i, tabcontent, tablinks;
-	  tabcontent = document.getElementsByClassName("tabcontent");
-	  for (i = 0; i < tabcontent.length; i++) {
-		tabcontent[i].style.display = "none";
-	  }
-	  tablinks = document.getElementsByClassName("tablinks");
-	  for (i = 0; i < tablinks.length; i++) {
-		tablinks[i].className = tablinks[i].className.replace(" active", "");
-	  }
-	  document.getElementById(cityName).style.display = "block";
-	  evt.currentTarget.className += " active";
-	}
-	</script>
-
-</body>
-</html>

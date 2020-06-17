@@ -1,4 +1,5 @@
 {% load static %}
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,15 +18,10 @@
   <!-- Material Design Bootstrap -->
   <link rel="stylesheet" href="{% static 'MDB/css/mdb.min.css' %}">
   <!-- Your custom styles (optional) -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.bokeh.org/bokeh/release/bokeh-1.4.0.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-1.4.0.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.bokeh.org/bokeh/release/bokeh-tables-1.4.0.min.css">
   <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
-  <!-- MDBootstrap Datatables  -->
-  <link href="{% static 'MDB/css/addons/datatables.min.css' %}" rel="stylesheet">
-  <!-- Your custom styles (optional) -->
-  <style>
-      #data{
-          margin: auto;
-      }
-  </style>
 </head>
 <body>
 
@@ -40,13 +36,13 @@
 	      <div class="collapse navbar-collapse" id="navbarToggle">
 	        <div class="navbar-nav mr-auto">
 	          <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
-	          <a class="nav-item nav-link" href="#">About</a>
+	          <a class="nav-item nav-link" href="{% url 'project:list' %}">List</a>
 	        </div>
 	        <!-- Navbar Right Side -->
 	        <div class="navbar-nav">
 				{% if user.is_authenticated %}
 					<a class="nav-item nav-link" href="#">Profile</a>
-					<a class="nav-item nav-link" href="#">New Post</a>
+					<a class="nav-item nav-link" href="{% url 'project:create' %}">New Post</a>
 					<a class="nav-item nav-link" href="{% url 'users:logout' %}">Logout</a>
 				{% else %}
 					<a class="nav-item nav-link" href="{% url 'users:login' %}">Login</a>
@@ -59,7 +55,7 @@
 	</header>
 	<main role="main" class="container">
 	  <div class="row">
-	    <div class="col-md-12">
+	    <div class="col-md-4">
 			{% if messages %}
 				{% for message in messages %}
 					<div class="alert alert-{{ message.tags }}">
@@ -67,23 +63,36 @@
 					</div>
 				{% endfor %}
 			{% endif %}
-            {% block content %}
-            {{data|safe}}
-            {% endblock %}
+			<div class="content-section">
+                <form class="form-horizontal" method="POST" action="">
+                    {% csrf_token %}
+                    {{ formset.management_form }}
+                    {% for form in formset %}
+                    <div class="row form-row spacer">
+                        <div class="col-2">
+                            <label>{{form.name.label}}</label>
+                        </div>
+                        <div class="col-4">
+                            <div class="input-group">
+                                {{form.name}}
+                                <div class="input-group-append">
+                                    <button class="btn btn-success add-form-row">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="row spacer">
+                        <div class="col-4 offset-2">
+                            <button type="submit" class="btn btn-block btn-primary">Create</button>
+                        </div>
+                    </div>
+                </form>
+			</div>
 	    </div>
-	    <!-- <div class="col-md-4">
-	      <div class="content-section">
-	        <h3>Our Sidebar</h3>
-	        <p class='text-muted'>You can put any information here you'd like.
-	          <ul class="list-group">
-	            <li class="list-group-item list-group-item-light">Latest Posts</li>
-	            <li class="list-group-item list-group-item-light">Announcements</li>
-	            <li class="list-group-item list-group-item-light">Calendars</li>
-	            <li class="list-group-item list-group-item-light">etc</li>
-	          </ul>
-	        </p>
-	      </div>
-	    </div> -->
+	    <div class="col-md-8">
+			{{div|safe}}
+	    </div>
     </div>
   <!-- End your project here-->
 
@@ -95,17 +104,11 @@
   <script type="text/javascript" src="{% static 'MDB/js/bootstrap.min.js' %}"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="{% static 'MDB/js/mdb.min.js' %}"></script>
-  <!-- MDBootstrap Datatables  -->
-  <script type="text/javascript" src="{% static 'MDB/js/addons/datatables.min.js' %}"></script>
   <!-- Your custom scripts (optional) -->
-  <script>
-      $(document).ready(function () {
-        $('#dtBasicExample').DataTable();
-        $('.dataTables_length').addClass('bs-select');
-        });
-  </script>
-
-
-
+  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-1.4.0.min.js"></script>
+  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-1.4.0.min.js"></script>
+  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-1.4.0.min.js"></script>
+  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-api-1.4.0.min.js"></script>
+  {{script|safe}}
 </body>
 </html>

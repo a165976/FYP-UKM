@@ -6,9 +6,15 @@
 		<div class="article-metadata">
 		<a class="mr-2" href="#">{{ project.author }}</a>
 		<small class="text-muted">{{ project.pub_date|date:"F d, Y" }}</small>
+		<div class="float-right">
+			<small class="text-muted">Dataset :</small>
+			<a class="mr-2" href="{% url 'project:read' project.id %}">{{ project.dataset }}</a>
 		</div>
-		<h2><a class="articlecle-title" href="{% url 'project:plot' project.id %}">{{ project.title }}</a></h2>
+		</div>
+		<h2><a class="articlecle-title" href="{% url 'project:plot-list' project.id %}">{{ project.title }}</a></h2>
 		<p class="article-content">{{ project.description }}</p>
+		<a class=" btn btn-outline-primary" href="{% url 'project:dashboard' project.id %}">Dashboard</a>
+		<a class="float-right btn btn-outline-danger" href="{% url 'project:project-delete' project.id %}">Delete</a>
 	</div>
 	</article>
 	{% endfor %}
@@ -32,3 +38,4 @@
 	{% endif %}
 	{% endif %}
 {% endblock %}
+
