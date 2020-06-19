@@ -91,20 +91,19 @@
   <header class="site-header">
 	  <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
 	    <div class="container">
-	      <a class="navbar-brand mr-4" href="#">Django Blog</a>
+	      <a class="navbar-brand mr-4" href="{% url 'home' %}">FYP</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
 	      <span class="navbar-toggler-icon"></span>
 	      </button>
 	      <div class="collapse navbar-collapse" id="navbarToggle">
 	        <div class="navbar-nav mr-auto">
-	          <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
+	          <!-- <a class="nav-item nav-link" href="{% url 'home' %}">Home</a> -->
 	          <a class="nav-item nav-link" href="{% url 'project:list' %}">List</a>
 	        </div>
 	        <!-- Navbar Right Side -->
 	        <div class="navbar-nav">
 				{% if user.is_authenticated %}
-					<a class="nav-item nav-link" href="#">Profile</a>
-					<a class="nav-item nav-link" href="{% url 'project:create' %}">New Post</a>
+					<a class="nav-item nav-link" href="{% url 'project:create' %}">New Project</a>
 					<a class="nav-item nav-link" href="{% url 'users:logout' %}">Logout</a>
 				{% else %}
 					<a class="nav-item nav-link" href="{% url 'users:login' %}">Login</a>
@@ -121,7 +120,7 @@
     <div class="list-group">
       {% for plot in plots %}
       <!-- <a href="{% url 'project:view-plot' plot.project.id plot.id%}" class="list-group-item list-group-item-action">{{plot.title}}</a> -->
-      <li id="yes-drop" class="drag-drop list-group-item list-group-item-action">{{plot.title}}</li>
+      <li id="yes-drop" class=" list-group-item list-group-item-action">{{plot.title}}</li>
       {% endfor %}
     </p>
     </div>

@@ -131,25 +131,19 @@
 						</div>
 					</form>
 				</div>
-
-				<!-- <div id="BarChart" class="tabcontent">
-					<form method="POST" action="" class="" enctype="multipart/form-data" id="form">
-						{% csrf_token %}
-						<fieldset class="form-group">
-							<legend class="border-bottom mb-4">Select</legend>
-							{{ BarChart | crispy }}
-						</fieldset>
-						<div class="form-group">
-							<button class="btn btn-outline-info" type="submit" value="form" name="create">Create</button>
-						</div>
-					</form>
-				</div> -->
 			</div>
 			<a class="float-right btn btn-primary" href="{% url 'project:read' data.project.id %}">Go to Dataset</a>
 		</div>
-		<div class="col-md-8">
-			{{div|safe}}
-		</div>	
+		<div class="card col-md-8" >
+            {{div|safe}}
+            <div class="card-body">
+            {%if currentplot %}
+              <h5 class="card-title">{{currentplot.title}}</h5>
+              <p class="card-text">{{currentplot.description}}</p>
+              <a class="float-right btn btn-outline-danger" href="{% url 'project:plot-delete' currentplot.id %}">Delete</a>
+            {%endif%}
+            </div>
+        </div>
 	</div>
   <!-- End your project here-->
 

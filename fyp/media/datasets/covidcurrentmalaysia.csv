@@ -1,0 +1,131 @@
+Date,States,No.of Cases
+"Jun 4, 2020",Johor,676
+"Jun 4, 2020",Melaka,233
+"Jun 4, 2020",Negeri Sembilan,905
+"Jun 4, 2020",Pahang,362
+"Jun 4, 2020",Perak,256
+"Jun 4, 2020",Sabah,348
+"Jun 4, 2020",Sarawak,552
+"Jun 4, 2020",Selangor,1930
+"Jun 4, 2020",Kuala Lumpur,2370
+"Jun 5, 2020",Johor,676
+"Jun 5, 2020",Melaka,234
+"Jun 5, 2020",Negeri Sembilan,905
+"Jun 5, 2020",Pahang,363
+"Jun 5, 2020",Kuala Lumpur,2374
+"Jun 5, 2020",Perak,256
+"Jun 5, 2020",Sabah,351
+"Jun 5, 2020",Sarawak,553
+"Jun 5, 2020",Selangor,1939
+"Jun 6, 2020",Melaka,234
+"Jun 6, 2020",Negeri Sembilan,910
+"Jun 6, 2020",Pahang,363
+"Jun 6, 2020",Perak,256
+"Jun 6, 2020",Sabah,351
+"Jun 6, 2020",Sarawak,555
+"Jun 6, 2020",Selangor,1953
+"Jun 6, 2020",Kuala Lumpur,2389
+"Jun 6, 2020",Johor,676
+"Jun 7, 2020",Johor,676
+"Jun 7, 2020",Melaka,234
+"Jun 7, 2020",Negeri Sembilan,911
+"Jun 7, 2020",Pahang,363
+"Jun 7, 2020",Perak,256
+"Jun 7, 2020",Sabah,353
+"Jun 7, 2020",Sarawak,555
+"Jun 7, 2020",Selangor,1965
+"Jun 7, 2020",Kuala Lumpur,2393
+"Jun 8, 2020",Johor,676
+"Jun 8, 2020",Melaka,235
+"Jun 8, 2020",Negeri Sembilan,911
+"Jun 8, 2020",Pahang,363
+"Jun 8, 2020",Perak,256
+"Jun 8, 2020",Sabah,355
+"Jun 8, 2020",Sarawak,555
+"Jun 8, 2020",Selangor,1968
+"Jun 8, 2020",Kuala Lumpur,2394
+"Jun 9, 2020",Johor,676
+"Jun 9, 2020",Melaka,235
+"Jun 9, 2020",Negeri Sembilan,911
+"Jun 9, 2020",Pahang,363
+"Jun 9, 2020",Perak,256
+"Jun 9, 2020",Sabah,355
+"Jun 9, 2020",Sarawak,555
+"Jun 9, 2020",Selangor,1971
+"Jun 9, 2020",Kuala Lumpur,2398
+"Jun 10, 2020",Johor,677
+"Jun 10, 2020",Melaka,235
+"Jun 10, 2020",Negeri Sembilan,911
+"Jun 10, 2020",Pahang,363
+"Jun 10, 2020",Perak,256
+"Jun 10, 2020",Sabah,355
+"Jun 10, 2020",Sarawak,556
+"Jun 10, 2020",Selangor,1971
+"Jun 10, 2020",Kuala Lumpur,2398
+"Jun 11, 2020",Johor,677
+"Jun 11, 2020",Melaka,246
+"Jun 11, 2020",Negeri Sembilan,927
+"Jun 11, 2020",Pahang,363
+"Jun 11, 2020",Perak,256
+"Jun 11, 2020",Sabah,355
+"Jun 11, 2020",Sarawak,556
+"Jun 11, 2020",Selangor,1974
+"Jun 11, 2020",Kuala Lumpur,2399
+"Jun 12, 2020",Johor,678
+"Jun 12, 2020",Melaka,250
+"Jun 12, 2020",Negeri Sembilan,931
+"Jun 12, 2020",Pahang,363
+"Jun 12, 2020",Perak,256
+"Jun 12, 2020",Sabah,356
+"Jun 12, 2020",Sarawak,556
+"Jun 12, 2020",Selangor,1987
+"Jun 12, 2020",Kuala Lumpur,2409
+"Jun 13, 2020",Johor,680
+"Jun 13, 2020",Melaka,252
+"Jun 13, 2020",Negeri Sembilan,957
+"Jun 13, 2020",Pahang,365
+"Jun 13, 2020",Perak,257
+"Jun 13, 2020",Sabah,358
+"Jun 13, 2020",Sarawak,556
+"Jun 13, 2020",Selangor,1994
+"Jun 13, 2020",Kuala Lumpur,2410
+"Jun 14, 2020",Johor,680
+"Jun 14, 2020",Melaka,253
+"Jun 14, 2020",Negeri Sembilan,957
+"Jun 14, 2020",Pahang,365
+"Jun 14, 2020",Perak,257
+"Jun 14, 2020",Sabah,358
+"Jun 14, 2020",Sarawak,557
+"Jun 14, 2020",Selangor,1996
+"Jun 14, 2020",Kuala Lumpur,2414
+"Jun 15, 2020",Johor,683
+"Jun 15, 2020",Melaka,255
+"Jun 15, 2020",Negeri Sembilan,989
+"Jun 15, 2020",Pahang,365
+"Jun 15, 2020",Perak,257
+"Jun 15, 2020",Sabah,359
+"Jun 15, 2020",Sarawak,557
+"Jun 15, 2020",Selangor,1998
+"Jun 15, 2020",Kuala Lumpur,2415
+"Jun 16, 2020",Johor,null
+"Jun 16, 2020",Melaka,null
+"Jun 16, 2020",Negeri Sembilan,null
+"Jun 16, 2020",Pahang,null
+"Jun 16, 2020",Perak,null
+"Jun 16, 2020",Sabah,null
+"Jun 16, 2020",Sarawak,null
+"Jun 16, 2020",Selangor,null
+"Jun 16, 2020",Kuala Lumpur,null
+"Jun 6, 2020",others,616
+"Jun 4, 2020",others,615
+"Jun 5, 2020",others,615
+"Jun 7, 2020",others,616
+"Jun 8, 2020",others,616
+"Jun 9, 2020",others,616
+"Jun 10, 2020",others,616
+"Jun 11, 2020",others,616
+"Jun 12, 2020",others,616
+"Jun 13, 2020",others,616
+"Jun 14, 2020",others,616
+"Jun 15, 2020",others,616
+"Jun 16, 2020",others,null

@@ -45,7 +45,6 @@
 	        <!-- Navbar Right Side -->
 	        <div class="navbar-nav">
 				{% if user.is_authenticated %}
-					<a class="nav-item nav-link" href="#">Profile</a>
 					<a class="nav-item nav-link" href="#">New Post</a>
 					<a class="nav-item nav-link" href="{% url 'users:logout' %}">Logout</a>
 				{% else %}
@@ -69,8 +68,9 @@
 			{% endif %}
             {% block content %}
             {{data|safe}}
-            {% endblock %}
-	    </div>
+			{% endblock %}
+			<a class="float-right btn btn-outline-primary" href="{% url 'project:plot-list' dataset.project.id %}">Go to project</a>
+		</div>
 	    <!-- <div class="col-md-4">
 	      <div class="content-section">
 	        <h3>Our Sidebar</h3>

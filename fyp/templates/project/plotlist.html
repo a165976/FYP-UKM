@@ -65,20 +65,19 @@
   <header class="site-header">
 	  <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
 	    <div class="container">
-	      <a class="navbar-brand mr-4" href="#">FYP</a>
+	      <a class="navbar-brand mr-4" href="{% url 'home' %}">FYP</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
 	      <span class="navbar-toggler-icon"></span>
 	      </button>
 	      <div class="collapse navbar-collapse" id="navbarToggle">
 	        <div class="navbar-nav mr-auto">
-	          <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
-	          <a class="nav-item nav-link" href="{% url 'project:list' %}">List</a>
+	          <!-- <a class="nav-item nav-link" href="{% url 'home' %}">Home</a> -->
+	          <a class="nav-item nav-link" href="{% url 'project:list' %}">Project</a>
 	        </div>
 	        <!-- Navbar Right Side -->
 	        <div class="navbar-nav">
 				{% if user.is_authenticated %}
-					<a class="nav-item nav-link" href="#">Profile</a>
-					<a class="nav-item nav-link" href="{% url 'project:create' %}">New Post</a>
+					<a class="nav-item nav-link" href="{% url 'project:create' %}">New Project</a>
 					<a class="nav-item nav-link" href="{% url 'users:logout' %}">Logout</a>
 				{% else %}
 					<a class="nav-item nav-link" href="{% url 'users:login' %}">Login</a>
@@ -107,15 +106,29 @@
 				  {% endfor %}
 				  <a href="{% url 'project:create-plot' projectid %}" class="list-group-item list-group-item-action"><i class="fas fa-plus"></i> Add Plot</a>
 				</div>
-				</p>
 			  </div>
+			  <a class="float-right btn btn-primary" href="{% url 'project:read' data.project.id %}">Dataset</a>
+			  <a class=" btn btn-outline-primary" href="{% url 'project:dashboard' data.project.id %}">Dashboard</a>
 			</div>
-			<div class="col-md-8">
+			<div class="card col-md-8" >
+				{{div|safe}}
+				<div class="card-body">
+				{%if currentplot %}
+				  <h5 class="card-title">{{currentplot.title}}</h5>
+				  <p class="card-text">{{currentplot.description}}</p>
+				  <a class="float-right btn btn-outline-secondary" href="{% url 'project:edit-plot' data.project.id currentplot.id %}">Edit</a>
+				  <a class="float-right btn btn-outline-danger" href="{% url 'project:plot-delete' currentplot.id %}">Delete</a>
+				{%endif%}
+				</div>
+			  </div>
+			<!-- <div class="col-md-8">
 			  {{div|safe}}
 			  {%if currentplot %}
 			  <a class="float-right btn btn-outline-danger" href="{% url 'project:plot-delete' currentplot.id %}">Delete</a>
+			  {{currentplot.description}}
 			  {%endif%}
-			</div>
+			</div> -->
+
 	</div>
   <!-- End your project here-->
 

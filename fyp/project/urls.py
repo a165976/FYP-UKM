@@ -14,5 +14,6 @@ urlpatterns = [
     path('dashboard/<int:pk>/', views.dashboard, name='dashboard'),
     path('<int:pk>/delete/', views.projectDeleteView.as_view(), name='project-delete'),
     path('plot/<int:pk>/delete/', views.plotDeleteView.as_view(), name='plot-delete'),
+    path('edit/<int:pk>/<int:plotpk>', views.editPlot, name='edit-plot')
     # path('graph/<int:pk>/',views.get_data, name="test")
 ]

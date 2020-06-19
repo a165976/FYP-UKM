@@ -25,19 +25,18 @@
   <header class="site-header">
 	  <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
 	    <div class="container">
-	      <a class="navbar-brand mr-4" href="#">FYP</a>
+	      <a class="navbar-brand mr-4" href="{% url 'home' %}">FYP</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
 	      <span class="navbar-toggler-icon"></span>
 	      </button>
 	      <div class="collapse navbar-collapse" id="navbarToggle">
 	        <div class="navbar-nav mr-auto">
-	          <a class="nav-item nav-link" href="{% url 'project:list' %}">Home</a>
+	          <a class="nav-item nav-link" href="{% url 'project:list' %}">Project</a>
 	        </div>
 	        <!-- Navbar Right Side -->
 	        <div class="navbar-nav">
 				{% if user.is_authenticated %}
-					<a class="nav-item nav-link" href="#">Profile</a>
-					<a class="nav-item nav-link" href="{% url 'project:create' %}">New Post</a>
+					<a class="nav-item nav-link" href="{% url 'project:create' %}">New Project</a>
 					<a class="nav-item nav-link" href="{% url 'users:logout' %}">Logout</a>
 				{% else %}
 					<a class="nav-item nav-link" href="{% url 'users:login' %}">Login</a>
