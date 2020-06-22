@@ -13,6 +13,8 @@ pandas = "*"
 django-plotly-dash = "*"
 bokeh = "*"
 gunicorn = "*"
+django-storages = "*"
+boto3 = "*"
 
 [requires]
 python_version = "3.7"
