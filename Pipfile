@@ -12,6 +12,7 @@ numpy = "*"
 pandas = "*"
 django-plotly-dash = "*"
 bokeh = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
