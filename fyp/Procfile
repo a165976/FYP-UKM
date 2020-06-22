@@ -1,1 +1,1 @@
-web: gunicorn fyp.fyp.wsgi
+web: gunicorn fyp.wsgi
