@@ -1,1 +1,1 @@
-web: gunicorn fyp/wsgi.py
+web: gunicorn --pythonpath /fyp.fyp.wsgi
