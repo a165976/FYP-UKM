@@ -34,6 +34,12 @@ class ProjectListView(LoginRequiredMixin, UserPassesTestMixin,ListView):
     context_object_name = 'projects'
     paginate_by = 5
 
+        def test_func(self):
+        roject = self.get_object()
+        if self.request.user == project.author:
+            return True
+        return False
+
 @login_required
 def ProjectCreateView(request):
     if request.method == "POST":

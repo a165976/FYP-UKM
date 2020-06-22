@@ -15,6 +15,7 @@ bokeh = "*"
 gunicorn = "*"
 django-storages = "*"
 boto3 = "*"
+django-heroku = "*"
 
 [requires]
 python_version = "3.7"
