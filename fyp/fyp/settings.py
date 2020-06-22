@@ -25,7 +25,7 @@ SECRET_KEY = 'nijto_c4bcgdn-ail8()z!&q@le$u50(^ilt+-&a_$8sp)19hr'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['timeseriessaas.herokuapp.com/']
+ALLOWED_HOSTS = []
 
 
 # Application definition
