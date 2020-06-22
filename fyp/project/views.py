@@ -28,18 +28,15 @@ import ast
 
 # Create your views here.
 
-class ProjectListView(LoginRequiredMixin, UserPassesTestMixin,ListView):
+class ProjectListView(ListView):
     model = Project
     template_name = 'project/list.html'
     context_object_name = 'projects'
     paginate_by = 5
 
-    def test_func(self):
-        project = self.get_object()
-        if self.request.user == project.author:
-            return True
-        return False
-
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Project.objects.filter(author=user)
 @login_required
 def ProjectCreateView(request):
     if request.method == "POST":
@@ -412,7 +409,6 @@ def editPlot(request, pk, plotpk):
         return render(request, 'project/editplot.html', {'script': script, 'div':div, 'form':form, 'form2':form2, 'type':'Double', 'data':data,'currentplot':currentplot})
 
     return render(request, 'project/editplot.html', {'form':form, 'form2':form2, 'data':data})
-
 
 def plotList(request, pk):
     templates = 'project/plotlist.html'
