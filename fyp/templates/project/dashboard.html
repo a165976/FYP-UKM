@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Material Design for Bootstrap</title>
+  <title>Time Series Data Visualization</title>
   <!-- MDB icon -->
   <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
   <!-- Font Awesome -->
@@ -83,6 +83,10 @@
   /* This makes things *much* easier */
   box-sizing: border-box;
   }
+  #panel {
+  padding: 50px;
+  display: none;
+}
   </style>
 </head>
 <body>
@@ -120,15 +124,23 @@
     <div class="list-group">
       {% for plot in plots %}
       <!-- <a href="{% url 'project:view-plot' plot.project.id plot.id%}" class="list-group-item list-group-item-action">{{plot.title}}</a> -->
-      <li id="yes-drop" class=" list-group-item list-group-item-action">{{plot.title}}</li>
+      <li class="list-group-item list-group-item-action" id="item">{{plot.title}}</li>
+      <li class="list-group-item " id="panel">{{plot.description}}</li>
       {% endfor %}
     </p>
     </div>
   </div>
 <div id="dropzone">
   {%for key, value in div.items %}
-  <div class="resize-drag" style= "display: inline-block;">
+  <div class="resize-drag card" style= "display: inline-block;">
     {{value|safe}}
+    <div class="card-body">
+    {% for plot in plots%}
+      {%if key == plot.title %}
+        {{plot.description}}
+      {%endif%}
+    {%endfor%}
+  </div>
   </div>
   {%endfor%}
 </div>
@@ -149,57 +161,13 @@
   <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-api-2.1.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
   <script>
-    // target elements with the "draggable" class
-//   interact('.draggable')
-//   .draggable({
-//     // enable inertial throwing
-//     inertia: true,
-//     // keep the element within the area of it's parent
-//     modifiers: [
-//       interact.modifiers.restrictRect({
-//         restriction: 'parent',
-//         endOnly: true
-//       })
-//     ],
-//     // enable autoScroll
-//     autoScroll: false,
-
-//     listeners: {
-//       // call this function on every dragmove event
-//       move: dragMoveListener,
-
-//       // call this function on every dragend event
-//       end (event) {
-//         var textEl = event.target.querySelector('p')
-
-//         textEl && (textEl.textContent =
-//           'moved a distance of ' +
-//           (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
-//                      Math.pow(event.pageY - event.y0, 2) | 0))
-//             .toFixed(2) + 'px')
-//       }
-//     }
-//   })
-
-// function dragMoveListener (event) {
-//   var target = event.target
-//   // keep the dragged position in the data-x/data-y attributes
-//   var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
-//   var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
-
-//   // translate the element
-//   target.style.webkitTransform =
-//     target.style.transform =
-//       'translate(' + x + 'px, ' + y + 'px)'
-
-//   // update the posiion attributes
-//   target.setAttribute('data-x', x)
-//   target.setAttribute('data-y', y)
-// }
-
-// // this function is used later in the resizing and gesture demos
-// window.dragMoveListener = dragMoveListener
-
+  </script>
+  <script>
+    $(document).ready(function(){
+      $("#item").click(function(){
+        $("#panel").slideToggle("slow");
+      });
+    });
   </script>
 </body>
 </html>

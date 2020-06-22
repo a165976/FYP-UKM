@@ -114,6 +114,7 @@ def plotGraph(request, pk):
                 plot_width=700,
                 )
             p.xaxis.axis_label = 'Time'
+            p.left[0].formatter.use_scientific = False
             # p.yaxis.axis_label = form.cleaned_data['Y']
             view = CDSView(source=source, filters=[])
             y = form2.cleaned_data['Y']
@@ -125,8 +126,8 @@ def plotGraph(request, pk):
             hover = HoverTool(
                 tooltips = [
                     ('Date', f'@{dateindex}''{%F}'),
-                    (f"{form2.cleaned_data['Y']}", f"@{form2.cleaned_data['Y']}"),
-                    (f"{form2.cleaned_data['Y2']}", f"@{form2.cleaned_data['Y2']}"),
+                    (f"{form2.cleaned_data['Y']}", f"@{form2.cleaned_data['Y']}"'{int}'),
+                    (f"{form2.cleaned_data['Y2']}", f"@{form2.cleaned_data['Y2']}"'{int}'),
                 ],
                 formatters={
                     f'@{dateindex}': 'datetime',
@@ -153,12 +154,13 @@ def plotGraph(request, pk):
                 plot_width=700,
                 )
             p.xaxis.axis_label = 'Time'
+            p.left[0].formatter.use_scientific = False
             p.yaxis.axis_label = form.cleaned_data['Y']
             view = CDSView(source=source, filters=[])
             hover = HoverTool(
                 tooltips = [
                     ('Date', f'@{dateindex}''{%F}'),
-                    (f"{form.cleaned_data['Y']}", f"@{form.cleaned_data['Y']}"),
+                    (f"{form.cleaned_data['Y']}", f"@{form.cleaned_data['Y']}"'{int}'),
                 ],
                 formatters={
                     f'@{dateindex}': 'datetime',
@@ -248,6 +250,7 @@ def editPlot(request, pk, plotpk):
                 plot_width=700,
                 )
             p.xaxis.axis_label = 'Time'
+            p.left[0].formatter.use_scientific = False
             # p.yaxis.axis_label = form.cleaned_data['Y']
             view = CDSView(source=source, filters=[])
             y = form2.cleaned_data['Y']
@@ -286,6 +289,7 @@ def editPlot(request, pk, plotpk):
                 plot_width=700,
                 )
             p.xaxis.axis_label = 'Time'
+            p.left[0].formatter.use_scientific = False
             p.yaxis.axis_label = form.cleaned_data['Y']
             view = CDSView(source=source, filters=[])
             hover = HoverTool(
@@ -345,6 +349,7 @@ def editPlot(request, pk, plotpk):
             plot_width=700,
             )
         p.xaxis.axis_label = 'Time'
+        p.left[0].formatter.use_scientific = False
         p.yaxis.axis_label = currentplot.columns
         view = CDSView(source=source, filters=[])
         hover = HoverTool(
@@ -375,6 +380,7 @@ def editPlot(request, pk, plotpk):
             plot_width=700,
             )
         p.xaxis.axis_label = 'Time'
+        p.left[0].formatter.use_scientific = False
         # p.yaxis.axis_label = form.cleaned_data['Y']
         view = CDSView(source=source, filters=[])
         y = columns[0]
@@ -436,12 +442,13 @@ def viewPlot(request, pk, plotpk):
             plot_width=700,
             )
         p.xaxis.axis_label = 'Time'
+        p.left[0].formatter.use_scientific = False
         p.yaxis.axis_label = plot.columns
         view = CDSView(source=source, filters=[])
         hover = HoverTool(
             tooltips = [
                 ('Date', f'@{dateindex}''{%F}'),
-                (f"{plot.columns}", f"@{plot.columns}"),
+                (f"{plot.columns}", f"@{plot.columns}"'{int}'),
             ],
             formatters={
                 f'@{dateindex}': 'datetime',
@@ -469,6 +476,7 @@ def viewPlot(request, pk, plotpk):
             plot_width=700,
             )
         p.xaxis.axis_label = 'Time'
+        p.left[0].formatter.use_scientific = False
         # p.yaxis.axis_label = form.cleaned_data['Y']
         view = CDSView(source=source, filters=[])
         y = listcolumns[0]
@@ -480,8 +488,8 @@ def viewPlot(request, pk, plotpk):
         hover = HoverTool(
             tooltips = [
                 ('Date', f'@{dateindex}''{%F}'),
-                (f"{listcolumns[0]}", f"@{listcolumns[0]}"),
-                (f"{listcolumns[1]}", f"@{listcolumns[1]}"),
+                (f"{listcolumns[0]}", f"@{listcolumns[0]}"'{int}'),
+                (f"{listcolumns[1]}", f"@{listcolumns[1]}"'{int}'),
             ],
             formatters={
                 f'@{dateindex}': 'datetime',
@@ -534,11 +542,12 @@ def dashboard(request, pk):
                 )
             p.xaxis.axis_label = 'Time'
             p.yaxis.axis_label = plot.columns
+            p.left[0].formatter.use_scientific = False
             view = CDSView(source=source, filters=[])
             hover = HoverTool(
                 tooltips = [
                     ('Date', f'@{dateindex}''{%F}'),
-                    (f"{plot.columns}", f"@{plot.columns}"),
+                    (f"{plot.columns}", f"@{plot.columns}"'{int}'),
                 ],
                 formatters={
                     f'@{dateindex}': 'datetime',
@@ -565,6 +574,7 @@ def dashboard(request, pk):
                 plot_width=700,
                 )
             p.xaxis.axis_label = 'Time'
+            p.left[0].formatter.use_scientific = False
             # p.yaxis.axis_label = form.cleaned_data['Y']
             view = CDSView(source=source, filters=[])
             y = listcolumns[0]
@@ -576,8 +586,8 @@ def dashboard(request, pk):
             hover = HoverTool(
                 tooltips = [
                     ('Date', f'@{dateindex}''{%F}'),
-                    (f"{listcolumns[0]}", f"@{listcolumns[0]}"),
-                    (f"{listcolumns[1]}", f"@{listcolumns[1]}"),
+                    (f"{listcolumns[0]}", f"@{listcolumns[0]}"'{int}'),
+                    (f"{listcolumns[1]}", f"@{listcolumns[1]}"'{int}'),
                 ],
                 formatters={
                     f'@{dateindex}': 'datetime',
@@ -588,12 +598,12 @@ def dashboard(request, pk):
             p.add_tools(hover)
             plotdict.update({f'{plot.title}' : p})
 
-    script, div = components(plotdict)        
+    script, div = components(plotdict)
     return render(request, templates, {'plots': plots, 'script': script, 'div':div})
 
 class projectDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Project
-    success_url = '/list'
+    success_url = '/'
 
     def test_func(self):
         project = self.get_object()
@@ -604,7 +614,7 @@ class projectDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 class plotDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Plot
-    success_url = '/list'
+    success_url = '/'
 
     def test_func(self):
         plot = self.get_object()
