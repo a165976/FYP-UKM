@@ -22,9 +22,13 @@ from django.views.generic import (
 	DeleteView
 
 )
+
 import numpy as np
 import pandas as pd
 import ast
+import boto3
+import os
+from smart_open import smart_open
 
 # Create your views here.
 
@@ -70,7 +74,14 @@ def plotGraph(request, pk):
     data = Dataset.objects.get(project=pk)
     plots = Plot.objects.filter(project=pk)
     title = data.title
-    df = pd.read_csv(f'media/datasets/{title}')
+    #--------readfilefroms3------------#
+    aws_key = os.environ['AWS_ACCESS_KEY_ID']
+    aws_secret = os.environ['AWS_SECRET_ACCESS_KEY']
+    bucket_name = os.environ['AWS_STORAGE_BUCKET_NAME']
+    client = boto3.client('s3')
+    path = 's3://{}:{}@{}/datasets/{}'.format(aws_key, aws_secret, bucket_name, title)
+    df = pd.read_csv(smart_open(path))
+    # df = pd.read_csv(f'media/datasets/{title}')
     df[df.columns[0]] = pd.to_datetime(df[df.columns[0]])
     df.columns = df.columns.str.strip().str.replace(' ','_')
     dateindex = df.columns.values[0]
@@ -213,7 +224,14 @@ def editPlot(request, pk, plotpk):
     plots = Plot.objects.filter(project=pk) #--------projectplot---------
     currentplot = Plot.objects.get(id=plotpk) #--------currentplot--------
     title = data.title
-    df = pd.read_csv(f'media/datasets/{title}')
+    #--------readfilefroms3------------#
+    aws_key = os.environ['AWS_ACCESS_KEY_ID']
+    aws_secret = os.environ['AWS_SECRET_ACCESS_KEY']
+    bucket_name = os.environ['AWS_STORAGE_BUCKET_NAME']
+    client = boto3.client('s3')
+    path = 's3://{}:{}@{}/datasets/{}'.format(aws_key, aws_secret, bucket_name, title)
+    df = pd.read_csv(smart_open(path))
+    # df = pd.read_csv(f'media/datasets/{title}')
     df[df.columns[0]] = pd.to_datetime(df[df.columns[0]])
     df.columns = df.columns.str.strip().str.replace(' ','_')
     dateindex = df.columns.values[0]
@@ -422,7 +440,14 @@ def viewPlot(request, pk, plotpk):
     #----------------------import data-------------------------#
     data = Dataset.objects.get(project=pk)
     title = data.title
-    df = pd.read_csv(f'media/datasets/{title}')
+    #--------readfilefroms3------------#
+    aws_key = os.environ['AWS_ACCESS_KEY_ID']
+    aws_secret = os.environ['AWS_SECRET_ACCESS_KEY']
+    bucket_name = os.environ['AWS_STORAGE_BUCKET_NAME']
+    client = boto3.client('s3')
+    path = 's3://{}:{}@{}/datasets/{}'.format(aws_key, aws_secret, bucket_name, title)
+    df = pd.read_csv(smart_open(path))
+    # df = pd.read_csv(f'media/datasets/{title}')
     df.columns = df.columns.str.strip().str.replace(' ','_')
     df[df.columns[0]] = pd.to_datetime(df[df.columns[0]])
     dateindex = df.columns.values[0]
@@ -507,7 +532,14 @@ def read_data(request, pk):
     templates = 'project/read.html'
     data = Dataset.objects.get(project=pk)
     title = data.title
-    df = pd.read_csv(f'media/datasets/{title}')
+        #--------readfilefroms3------------#
+    aws_key = os.environ['AWS_ACCESS_KEY_ID']
+    aws_secret = os.environ['AWS_SECRET_ACCESS_KEY']
+    bucket_name = os.environ['AWS_STORAGE_BUCKET_NAME']
+    client = boto3.client('s3')
+    path = 's3://{}:{}@{}/datasets/{}'.format(aws_key, aws_secret, bucket_name, title)
+    df = pd.read_csv(smart_open(path))
+    # df = pd.read_csv(f'/datasets/{title}')
     df.columns = df.columns.str.strip().str.replace(' ','_')
     df[df.columns[0]] = pd.to_datetime(df[df.columns[0]])
 
@@ -523,7 +555,14 @@ def dashboard(request, pk):
 
     data = Dataset.objects.get(project=pk)
     title = data.title
-    df = pd.read_csv(f'media/datasets/{title}')
+    #--------readfilefroms3------------#
+    aws_key = os.environ['AWS_ACCESS_KEY_ID']
+    aws_secret = os.environ['AWS_SECRET_ACCESS_KEY']
+    bucket_name = os.environ['AWS_STORAGE_BUCKET_NAME']
+    client = boto3.client('s3')
+    path = 's3://{}:{}@{}/datasets/{}'.format(aws_key, aws_secret, bucket_name, title)
+    df = pd.read_csv(smart_open(path))
+    # df = pd.read_csv(f'media/datasets/{title}')
     df.columns = df.columns.str.strip().str.replace(' ','_')
     df[df.columns[0]] = pd.to_datetime(df[df.columns[0]])
     dateindex = df.columns.values[0]

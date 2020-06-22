@@ -16,6 +16,8 @@ gunicorn = "*"
 django-storages = "*"
 boto3 = "*"
 django-heroku = "*"
+s3fs = "*"
+smart-open = {extras = ["aws"],version = "*"}
 
 [requires]
 python_version = "3.7"
