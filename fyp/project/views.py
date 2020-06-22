@@ -28,7 +28,7 @@ import ast
 
 # Create your views here.
 
-class ProjectListView(ListView):
+class ProjectListView(LoginRequiredMixin, UserPassesTestMixin,ListView):
     model = Project
     template_name = 'project/list.html'
     context_object_name = 'projects'
